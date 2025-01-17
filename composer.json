@@ -1,0 +1,20 @@
+{
+	"name": "timonkreis/deployer-recipes",
+	"description": "Deployer recipes and default configuration.",
+    "license": "GPL-3.0-or-later",
+	"authors": [
+		{
+			"name": "Timon Kreis",
+			"email": "mail@timonkreis.de",
+			"homepage": "https://www.timonkreis.de/",
+			"role": "Developer"
+		}
+	],
+	"require": {
+		"deployer/deployer": "^7.3",
+		"php": "^8.2"
+	},
+	"keywords": [
+		"dev"
+	]
+}

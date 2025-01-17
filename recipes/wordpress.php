@@ -1,0 +1,36 @@
+<?php
+declare(strict_types=1);
+
+namespace Deployer;
+
+require 'recipe/wordpress.php';
+require __DIR__ . '/common.php';
+
+set('wp_webroot', function(): string {
+    try {
+        $json = load_json_from_file('composer.json');
+
+        if (isset($json['extra']['wordpress-install-dir'])) {
+            return dirname($json['extra']['wordpress-install-dir']);
+        }
+    } catch (\Exception) {}
+
+    return 'public';
+});
+
+desc('Download uploads');
+task('download:uploads', function(): void {
+    if (!askConfirmation('Do you want to download the uploads folder?', true)) {
+        return;
+    }
+
+    $name = @is_dir(getcwd() . parse('/{{wp_webroot}}/app/uploads'))
+        ? ask('The folder already exists. Do you want to rename the downloaded folder?', 'uploads')
+        : 'uploads';
+
+    download(
+        '{{current_path}}/{{wp_webroot}}/app/uploads/',
+        '{{wp_webroot}}/app/' . $name,
+        ['flags' => '-azLP', 'options' => ['--delete']],
+    );
+});
