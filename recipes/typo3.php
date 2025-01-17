@@ -35,6 +35,12 @@ set('typo3_version', function(): int {
     return 0;
 });
 
+set('writable_dirs', [
+    '{{typo3_webroot}}/fileadmin',
+    '{{typo3_webroot}}/typo3temp',
+    'var',
+]);
+
 desc('Download fileadmin');
 task('download:fileadmin', function(): void {
     if (!askConfirmation('Do you want to download the fileadmin folder?', true)) {
