@@ -15,7 +15,7 @@ task('download:env', function(): void {
         return;
     }
 
-    $name = @is_file(getcwd() . '/.env')
+    $name = @is_file(project_root() . '/.env')
         ? ask('The file already exists. Do you want to rename the downloaded file?', '.env')
         : '.env';
 
@@ -28,7 +28,7 @@ task('download:auth.json', function(): void {
         return;
     }
 
-    $name = @is_file(getcwd() . '/auth.json')
+    $name = @is_file(project_root() . '/auth.json')
         ? ask('The file already exists. Do you want to rename the downloaded file?', 'auth.json')
         : 'auth.json';
 

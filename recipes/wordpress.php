@@ -24,7 +24,7 @@ task('download:uploads', function(): void {
         return;
     }
 
-    $name = @is_dir(getcwd() . parse('/{{wp_webroot}}/app/uploads'))
+    $name = @is_dir(project_root() . parse('/{{wp_webroot}}/app/uploads'))
         ? ask('The folder already exists. Do you want to rename the downloaded folder?', 'uploads')
         : 'uploads';
 

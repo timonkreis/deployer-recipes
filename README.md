@@ -14,8 +14,8 @@ Import the desired recipe into your `deploy.php`:
 
 ```php
 // For TYPO3
-import('vendor/timonkreis/deployer-recipes/recipes/typo3.php');
+import(__DIR__ . '/vendor/timonkreis/deployer-recipes/recipes/typo3.php');
 
 // For WordPress
-import('vendor/timonkreis/deployer-recipes/recipes/wordpress.php');
+import(__DIR__ . '/vendor/timonkreis/deployer-recipes/recipes/wordpress.php');
 ```

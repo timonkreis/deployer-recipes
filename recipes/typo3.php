@@ -47,7 +47,7 @@ task('download:fileadmin', function(): void {
         return;
     }
 
-    $name = @is_dir(getcwd() . parse('/{{typo3_webroot}}/fileadmin'))
+    $name = @is_dir(project_root() . parse('/{{typo3_webroot}}/fileadmin'))
         ? ask('The folder already exists. Do you want to rename the downloaded folder?', 'fileadmin')
         : 'fileadmin';
 

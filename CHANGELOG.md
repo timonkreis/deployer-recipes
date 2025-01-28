@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2025-01-28
+Add function to detect project root.
+
 ## 2025-01-17
 Update writable directories for TYPO3.
 
