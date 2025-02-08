@@ -13,7 +13,7 @@ set('typo3_webroot', function(): string {
         if (isset($json['extra']['typo3/cms']['web-dir'])) {
             return $json['extra']['typo3/cms']['web-dir'];
         }
-    } catch (\Exception) {}
+    } catch (\Exception $e) {}
 
     return 'public';
 });
@@ -30,7 +30,7 @@ set('typo3_version', function(): int {
                 return (int)$version;
             }
         }
-    } catch (\Exception) {}
+    } catch (\Exception $e) {}
 
     return 0;
 });

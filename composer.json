@@ -12,7 +12,8 @@
 	],
 	"require": {
 		"deployer/deployer": "^7.3",
-		"php": "^8.2"
+		"ext-json": "*",
+		"php": "^7.4"
 	},
 	"keywords": [
 		"dev"

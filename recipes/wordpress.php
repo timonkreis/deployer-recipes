@@ -13,7 +13,7 @@ set('wp_webroot', function(): string {
         if (isset($json['extra']['wordpress-install-dir'])) {
             return dirname($json['extra']['wordpress-install-dir']);
         }
-    } catch (\Exception) {}
+    } catch (\Exception $e) {}
 
     return 'public';
 });
