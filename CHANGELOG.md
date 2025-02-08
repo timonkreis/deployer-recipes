@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 ## 2025-02-08
 * Lower required PHP version.
 * Set writable directories for WordPress.
+* Lower number of kept releases.
 
 ## 2025-01-28
 * Add function to detect project root.

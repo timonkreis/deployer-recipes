@@ -7,7 +7,7 @@ require dirname(__DIR__) . '/src/functions.php';
 
 set('git_tty', true);
 set('writable_dirs', []);
-set('keep_releases', 5);
+set('keep_releases', 3);
 
 desc('Download .env');
 task('download:env', function(): void {
