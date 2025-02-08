@@ -18,6 +18,8 @@ set('wp_webroot', function(): string {
     return 'public';
 });
 
+set('writable_dirs', ['{wp_webroot}}/app/uploads']);
+
 desc('Download uploads');
 task('download:uploads', function(): void {
     if (!askConfirmation('Do you want to download the uploads folder?', true)) {
