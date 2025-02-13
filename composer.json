@@ -13,7 +13,7 @@
 	"require": {
 		"deployer/deployer": "^7.3",
 		"ext-json": "*",
-		"php": "^7.4"
+		"php": ">=7.4"
 	},
 	"keywords": [
 		"dev"
