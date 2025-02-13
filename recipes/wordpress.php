@@ -36,3 +36,9 @@ task('download:uploads', function(): void {
         ['flags' => '-azLP', 'options' => ['--delete']],
     );
 });
+
+task('deploy', [
+    'deploy:prepare',
+    'deploy:vendors',
+    'deploy:publish',
+]);
