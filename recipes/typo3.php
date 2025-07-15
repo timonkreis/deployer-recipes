@@ -41,6 +41,21 @@ set('writable_dirs', [
     'var',
 ]);
 
+set('shared_dirs', [
+    '{{typo3_webroot}}/fileadmin',
+    '{{typo3_webroot}}/typo3temp',
+    'var/charset',
+    'var/lock',
+    'var/log',
+    'var/session',
+]);
+
+set('shared_files', [
+    '.env', 
+    'config/system/additional.php', 
+    '{{typo3_webroot}}/.htaccess',
+]);
+
 desc('Download fileadmin');
 task('download:fileadmin', function(): void {
     if (!askConfirmation('Do you want to download the fileadmin folder?', true)) {
