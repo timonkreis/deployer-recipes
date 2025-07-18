@@ -5,6 +5,7 @@ namespace Deployer;
 
 require dirname(__DIR__) . '/src/functions.php';
 
+set('branch', 'main');
 set('git_tty', true);
 set('writable_dirs', []);
 set('keep_releases', 3);
