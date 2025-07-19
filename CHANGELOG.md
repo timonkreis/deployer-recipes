@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 2025-07-1ß
+## 2025-07-19
 * Fix writable directories.
 * Add vendor installation to WordPress recipe.
 * Update default writable mode.
