@@ -1,6 +1,15 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2025-07-1ß
+* Fix writable directories.
+* Add vendor installation to WordPress recipe.
+* Update default writable mode.
+* Update requirement for PHP.
+* Add default shared directories and files for TYPO3.
+* Set default branch.
+* Add function to dynamically build array of shared files for TYPO3.
+
 ## 2025-02-08
 * Lower required PHP version.
 * Set writable directories for WordPress.

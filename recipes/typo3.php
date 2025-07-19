@@ -50,11 +50,24 @@ set('shared_dirs', [
     'var/session',
 ]);
 
-set('shared_files', [
-    '.env', 
-    'config/system/additional.php', 
-    '{{typo3_webroot}}/.htaccess',
-]);
+set('shared_files', function(): array {
+    $sharedFiles = [];
+    $possibleFiles = [
+        '.env',
+        'auth.json',
+        'config/system/additional.php',
+        '{{typo3_webroot}}/.htaccess',
+        '{{typo3_webroot}}/typo3conf/AdditionalConfiguration.php',
+    ];
+
+    foreach ($possibleFiles as $possibleFile) {
+        if (@is_file(project_root() . '/' . parse($possibleFile))) {
+            $sharedFiles[] = $possibleFile;
+        }
+    }
+
+    return $sharedFiles;
+});
 
 desc('Download fileadmin');
 task('download:fileadmin', function(): void {
