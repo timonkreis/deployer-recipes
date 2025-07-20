@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 ## 2025-07-20
 * Add detection for repository url.
 * Add task to view remote .env file.
+* Add task to view remote auth.json file.
 
 ## 2025-07-19
 * Fix writable directories.

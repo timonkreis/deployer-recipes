@@ -29,6 +29,7 @@ task('view:env', function(): void {
 
     download('{{current_path}}/.env', $destination, ['flags' => '-azLP']);
     readfile($destination);
+    unlink($destination);
 });
 
 desc('Download .env');
@@ -42,6 +43,15 @@ task('download:env', function(): void {
         : '.env';
 
     download('{{current_path}}/.env', $name, ['flags' => '-azLP']);
+});
+
+desc('View auth.json');
+task('view:auth.json', function(): void {
+    $destination = tempnam(sys_get_temp_dir(), 'auth.json');
+
+    download('{{current_path}}/auth.json', $destination, ['flags' => '-azLP']);
+    readfile($destination);
+    unlink($destination);
 });
 
 desc('Download auth.json');
