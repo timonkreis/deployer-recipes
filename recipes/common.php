@@ -23,6 +23,14 @@ set('repository', function() {
     return '';
 });
 
+desc('View .env');
+task('view:env', function(): void {
+    $destination = tempnam(sys_get_temp_dir(), 'env');
+
+    download('{{current_path}}/.env', $destination, ['flags' => '-azLP']);
+    readfile($destination);
+});
+
 desc('Download .env');
 task('download:env', function(): void {
     if (!askConfirmation('Do you want to download the file ".env"?', true)) {
