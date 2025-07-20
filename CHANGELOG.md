@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2025-07-20
+* Add detection for repository url.
+
 ## 2025-07-19
 * Fix writable directories.
 * Add vendor installation to WordPress recipe.

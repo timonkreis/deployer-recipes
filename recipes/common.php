@@ -11,6 +11,18 @@ set('writable_dirs', []);
 set('keep_releases', 3);
 set('writable_mode', 'chmod');
 
+set('repository', function() {
+    if (@is_file(project_root() . '/.git/config')) {
+        $data = parse_ini_file(project_root() . '/.git/config', true);
+
+        if (isset($data['remote origin']['url'])) {
+            return $data['remote origin']['url'];
+        }
+    }
+
+    return '';
+});
+
 desc('Download .env');
 task('download:env', function(): void {
     if (!askConfirmation('Do you want to download the file ".env"?', true)) {
