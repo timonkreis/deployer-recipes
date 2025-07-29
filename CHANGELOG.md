@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2025-07-29
+* Add default deployer recipes to common recipe.
+
 ## 2025-07-20
 * Add detection for repository url.
 * Add task to view remote .env file.

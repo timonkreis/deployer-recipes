@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace Deployer;
 
 require dirname(__DIR__) . '/src/functions.php';
+require_once 'recipe/common.php';
+require_once 'recipe/composer.php';
 
 set('branch', 'main');
 set('git_tty', true);

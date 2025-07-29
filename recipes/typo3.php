@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Deployer;
 
-require 'recipe/typo3.php';
-require __DIR__ . '/common.php';
+require_once 'recipe/typo3.php';
+require_once __DIR__ . '/common.php';
 
 set('typo3_webroot', function(): string {
     try {

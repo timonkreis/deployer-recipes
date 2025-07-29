@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Deployer;
 
-require 'recipe/wordpress.php';
-require __DIR__ . '/common.php';
+require_once 'recipe/wordpress.php';
+require_once __DIR__ . '/common.php';
 
 set('wp_webroot', function(): string {
     try {
