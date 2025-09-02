@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2025-09-02
+* Add default values for WordPress deployments.
+
 ## 2025-07-29
 * Add default deployer recipes to common recipe.
 * Add exception message.

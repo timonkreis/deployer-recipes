@@ -20,6 +20,26 @@ set('wp_webroot', function(): string {
 
 set('writable_dirs', ['{{wp_webroot}}/app/uploads']);
 
+set('shared_dirs', ['{{wp_webroot}}/app/uploads']);
+
+set('shared_files', function(): array {
+    $sharedFiles = [];
+    $possibleFiles = [
+        '.htninja',
+        'auth.json',
+        'wordpress-config.php',
+        '{{wp_webroot}}/app/wp-cache-config.php',
+    ];
+
+    foreach ($possibleFiles as $possibleFile) {
+        if (@is_file(project_root() . '/' . parse($possibleFile))) {
+            $sharedFiles[] = $possibleFile;
+        }
+    }
+
+    return $sharedFiles;
+});
+
 desc('Download uploads');
 task('download:uploads', function(): void {
     if (!askConfirmation('Do you want to download the uploads folder?', true)) {
