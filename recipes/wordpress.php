@@ -28,6 +28,7 @@ set('shared_files', function(): array {
         '.htninja',
         'auth.json',
         'wordpress-config.php',
+        '{{wp_webroot}}/.htaccess',
         '{{wp_webroot}}/app/wp-cache-config.php',
     ];
 
