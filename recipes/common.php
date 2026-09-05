@@ -25,48 +25,9 @@ set('repository', function() {
     return '';
 });
 
-desc('View .env');
-task('view:env', function(): void {
-    $destination = tempnam(sys_get_temp_dir(), 'env');
-
-    download('{{current_path}}/.env', $destination, ['flags' => '-azLP']);
-    readfile($destination);
-    unlink($destination);
-});
-
-desc('Download .env');
-task('download:env', function(): void {
-    if (!askConfirmation('Do you want to download the file ".env"?', true)) {
-        return;
-    }
-
-    $name = @is_file(project_root() . '/.env')
-        ? ask('The file already exists. Do you want to rename the downloaded file?', '.env')
-        : '.env';
-
-    download('{{current_path}}/.env', $name, ['flags' => '-azLP']);
-});
-
-desc('View auth.json');
-task('view:auth.json', function(): void {
-    $destination = tempnam(sys_get_temp_dir(), 'auth.json');
-
-    download('{{current_path}}/auth.json', $destination, ['flags' => '-azLP']);
-    readfile($destination);
-    unlink($destination);
-});
-
-desc('Download auth.json');
-task('download:auth.json', function(): void {
-    if (!askConfirmation('Do you want to download the file "auth.json"?', true)) {
-        return;
-    }
-
-    $name = @is_file(project_root() . '/auth.json')
-        ? ask('The file already exists. Do you want to rename the downloaded file?', 'auth.json')
-        : 'auth.json';
-
-    download('{{current_path}}/auth.json', $name, ['flags' => '-azLP']);
-});
+register_view_file_task('.env', 'env');
+register_download_file_task('.env', 'env');
+register_view_file_task('auth.json');
+register_download_file_task('auth.json');
 
 after('deploy:failed', 'deploy:unlock');

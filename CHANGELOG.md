@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 * Add configuration for Claude.
 * Increase debugging possibilities.
 * Fix exception handling.
+* Update codestyle.
 
 ## 2026-02-11
 * Add deployer recipe for Matomo.
