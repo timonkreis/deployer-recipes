@@ -13,7 +13,7 @@ set('typo3_webroot', function(): string {
         if (isset($json['extra']['typo3/cms']['web-dir'])) {
             return $json['extra']['typo3/cms']['web-dir'];
         }
-    } catch (\Exception $e) {}
+    } catch (\Throwable $e) {}
 
     return 'public';
 });
@@ -25,12 +25,12 @@ set('typo3_version', function(): int {
         foreach ($json['packages'] as $package) {
             if ($package['name'] === 'typo3/cms-core') {
                 $version = preg_replace('/[^\d.]/', '', $package['version']);
-                $version = explode('.', $version, 1)[0];
+                $version = explode('.', $version, 2)[0];
 
                 return (int)$version;
             }
         }
-    } catch (\Exception $e) {}
+    } catch (\Throwable $e) {}
 
     return 0;
 });
