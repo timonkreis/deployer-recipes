@@ -3,6 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## 2026-09-22
 * Update codestyle.
+* Rename docroot variable.
 
 ## 2026-09-05
 * Add configuration for Claude.

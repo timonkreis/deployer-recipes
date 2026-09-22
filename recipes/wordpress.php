@@ -6,7 +6,7 @@ namespace Deployer;
 require_once 'recipe/wordpress.php';
 require_once __DIR__ . '/common.php';
 
-set('wp_webroot', function(): string {
+set('docroot', static function(): string {
     try {
         $json = load_json_from_file('composer.json');
 
@@ -20,19 +20,24 @@ set('wp_webroot', function(): string {
     return 'public';
 });
 
-set('writable_dirs', ['{{wp_webroot}}/app/uploads']);
+set('wp_webroot', static function(): string {
+    warning('Using "wp_webroot" is deprecated. Use "docroot" instead.');
 
-set('shared_dirs', ['{{wp_webroot}}/app/uploads']);
+    return get('docroot');
+});
 
-set('shared_files', function(): array {
+set('writable_dirs', ['{{docroot}}/app/uploads']);
+
+set('shared_dirs', ['{{docroot}}/app/uploads']);
+
 set('shared_files', static function(): array {
     $sharedFiles = [];
     $possibleFiles = [
         '.htninja',
         'auth.json',
         'wordpress-config.php',
-        '{{wp_webroot}}/.htaccess',
-        '{{wp_webroot}}/app/wp-cache-config.php',
+        '{{docroot}}/.htaccess',
+        '{{docroot}}/app/wp-cache-config.php',
     ];
 
     foreach ($possibleFiles as $possibleFile) {
@@ -50,13 +55,13 @@ task('download:uploads', static function(): void {
         return;
     }
 
-    $name = @is_dir(project_root() . parse('/{{wp_webroot}}/app/uploads'))
+    $name = @is_dir(project_root() . parse('/{{docroot}}/app/uploads'))
         ? ask('The folder already exists. Do you want to rename the downloaded folder?', 'uploads')
         : 'uploads';
 
     download(
-        '{{current_path}}/{{wp_webroot}}/app/uploads/',
-        '{{wp_webroot}}/app/' . $name,
+        '{{current_path}}/{{docroot}}/app/uploads/',
+        '{{docroot}}/app/' . $name,
         ['flags' => '-azLP', 'options' => ['--delete']],
     );
 });

@@ -6,7 +6,7 @@ namespace Deployer;
 require_once 'recipe/typo3.php';
 require_once __DIR__ . '/common.php';
 
-set('typo3_webroot', function(): string {
+set('docroot', static function(): string {
     try {
         $json = load_json_from_file('composer.json');
 
@@ -20,7 +20,12 @@ set('typo3_webroot', function(): string {
     return 'public';
 });
 
-set('typo3_version', function(): int {
+set('typo3_webroot', static function(): string {
+    warning('Using "typo3_webroot" is deprecated. Use "docroot" instead.');
+
+    return get('docroot');
+});
+
 set('typo3_version', static function(): int {
     try {
         $json = load_json_from_file('composer.lock');
@@ -41,14 +46,14 @@ set('typo3_version', static function(): int {
 });
 
 set('writable_dirs', [
-    '{{typo3_webroot}}/fileadmin',
-    '{{typo3_webroot}}/typo3temp',
+    '{{docroot}}/fileadmin',
+    '{{docroot}}/typo3temp',
     'var',
 ]);
 
 set('shared_dirs', [
-    '{{typo3_webroot}}/fileadmin',
-    '{{typo3_webroot}}/typo3temp',
+    '{{docroot}}/fileadmin',
+    '{{docroot}}/typo3temp',
     'var/charset',
     'var/lock',
     'var/log',
@@ -61,8 +66,8 @@ set('shared_files', static function(): array {
         '.env',
         'auth.json',
         'config/system/additional.php',
-        '{{typo3_webroot}}/.htaccess',
-        '{{typo3_webroot}}/typo3conf/AdditionalConfiguration.php',
+        '{{docroot}}/.htaccess',
+        '{{docroot}}/typo3conf/AdditionalConfiguration.php',
     ];
 
     foreach ($possibleFiles as $possibleFile) {
@@ -80,13 +85,13 @@ task('download:fileadmin', static function(): void {
         return;
     }
 
-    $name = @is_dir(project_root() . parse('/{{typo3_webroot}}/fileadmin'))
+    $name = @is_dir(project_root() . parse('/{{docroot}}/fileadmin'))
         ? ask('The folder already exists. Do you want to rename the downloaded folder?', 'fileadmin')
         : 'fileadmin';
 
     download(
-        '{{current_path}}/{{typo3_webroot}}/fileadmin/',
-        '{{typo3_webroot}}/' . $name,
+        '{{current_path}}/{{docroot}}/fileadmin/',
+        '{{docroot}}/' . $name,
         ['flags' => '-azLP', 'options' => ['--delete']],
     );
 });

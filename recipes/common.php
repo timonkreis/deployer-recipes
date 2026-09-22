@@ -12,6 +12,7 @@ set('git_tty', true);
 set('writable_dirs', []);
 set('keep_releases', 3);
 set('writable_mode', 'chmod');
+set('docroot', 'public');
 
 set('repository', static function(): string {
     if (@is_file(project_root() . '/.git/config')) {
