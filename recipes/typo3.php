@@ -13,12 +13,15 @@ set('typo3_webroot', function(): string {
         if (isset($json['extra']['typo3/cms']['web-dir'])) {
             return $json['extra']['typo3/cms']['web-dir'];
         }
-    } catch (\Throwable $e) {}
+    } catch (\Throwable $e) {
+        warning($e->getMessage());
+    }
 
     return 'public';
 });
 
 set('typo3_version', function(): int {
+set('typo3_version', static function(): int {
     try {
         $json = load_json_from_file('composer.lock');
 
@@ -30,7 +33,9 @@ set('typo3_version', function(): int {
                 return (int)$version;
             }
         }
-    } catch (\Throwable $e) {}
+    } catch (\Throwable $e) {
+        warning($e->getMessage());
+    }
 
     return 0;
 });
@@ -50,7 +55,7 @@ set('shared_dirs', [
     'var/session',
 ]);
 
-set('shared_files', function(): array {
+set('shared_files', static function(): array {
     $sharedFiles = [];
     $possibleFiles = [
         '.env',
@@ -69,8 +74,8 @@ set('shared_files', function(): array {
     return $sharedFiles;
 });
 
-desc('Download fileadmin');
-task('download:fileadmin', function(): void {
+desc('Download fileadmin folder');
+task('download:fileadmin', static function(): void {
     if (!askConfirmation('Do you want to download the fileadmin folder?', true)) {
         return;
     }

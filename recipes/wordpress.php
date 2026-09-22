@@ -13,7 +13,9 @@ set('wp_webroot', function(): string {
         if (isset($json['extra']['wordpress-install-dir'])) {
             return dirname($json['extra']['wordpress-install-dir']);
         }
-    } catch (\Throwable $e) {}
+    } catch (\Throwable $e) {
+        warning($e->getMessage());
+    }
 
     return 'public';
 });
@@ -23,6 +25,7 @@ set('writable_dirs', ['{{wp_webroot}}/app/uploads']);
 set('shared_dirs', ['{{wp_webroot}}/app/uploads']);
 
 set('shared_files', function(): array {
+set('shared_files', static function(): array {
     $sharedFiles = [];
     $possibleFiles = [
         '.htninja',
@@ -41,8 +44,8 @@ set('shared_files', function(): array {
     return $sharedFiles;
 });
 
-desc('Download uploads');
-task('download:uploads', function(): void {
+desc('Download uploads folder');
+task('download:uploads', static function(): void {
     if (!askConfirmation('Do you want to download the uploads folder?', true)) {
         return;
     }

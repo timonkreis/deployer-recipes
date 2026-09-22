@@ -13,7 +13,7 @@ set('writable_dirs', []);
 set('keep_releases', 3);
 set('writable_mode', 'chmod');
 
-set('repository', function() {
+set('repository', static function(): string {
     if (@is_file(project_root() . '/.git/config')) {
         $data = parse_ini_file(project_root() . '/.git/config', true);
 

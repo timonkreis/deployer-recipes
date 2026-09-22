@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2026-09-22
+* Update codestyle.
+
 ## 2026-09-05
 * Add configuration for Claude.
 * Increase debugging possibilities.
