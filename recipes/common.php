@@ -32,3 +32,11 @@ register_view_file_task('auth.json');
 register_download_file_task('auth.json');
 
 after('deploy:failed', 'deploy:unlock');
+
+desc('Copy custom .user.ini file');
+task('deploy:user_ini', static function(): void {
+    if (test('[ -f {{deploy_path}}/shared/{{docroot}}/.user.ini ]')) {
+        run('cp {{deploy_path}}/shared/{{docroot}}/.user.ini {{release_path}}/{{docroot}}/.user.ini');
+    }
+});
+after('deploy:shared', 'deploy:user_ini');
