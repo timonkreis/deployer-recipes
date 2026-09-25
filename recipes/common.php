@@ -35,9 +35,12 @@ register_download_file_task('auth.json');
 after('deploy:failed', 'deploy:unlock');
 
 desc('Copy custom .user.ini file');
-task('deploy:user_ini', static function(): void {
-    if (test('[ -f {{deploy_path}}/shared/{{docroot}}/.user.ini ]')) {
-        run('cp {{deploy_path}}/shared/{{docroot}}/.user.ini {{release_path}}/{{docroot}}/.user.ini');
+task('deploy:user.ini', static function(): void {
+    $file = '{{docroot}}/'. get('user.ini', '.user.ini');
+
+    if (!test('[ -f {{deploy_path}}/shared/' . $file . ' ]')) {
+        throw error(sprintf('Required .user.ini file (%s) does not exist', '{{deploy_path}}/shared/' . $file));
     }
+
+    run(sprintf('cp {{deploy_path}}/shared/%1$s {{release_path}}/%1$s', $file));
 });
-after('deploy:shared', 'deploy:user_ini');

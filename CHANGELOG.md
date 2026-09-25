@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 ## 2026-09-25
 * Update codestyle.
 * Update Deployer requirement.
+* Make task for deploying .user.ini optional.
 
 ## 2026-09-22
 * Update codestyle.
