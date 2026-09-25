@@ -11,7 +11,7 @@
 		}
 	],
 	"require": {
-		"deployer/deployer": "^7.3",
+		"deployer/deployer": "^8",
 		"ext-json": "*",
 		"php": ">=7.4"
 	},
